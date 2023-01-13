@@ -401,6 +401,7 @@ void ActionBuilder::getDependencies(const ParsedCommand &command,
         for (auto &depc : command.get_dependencies_command()) {
             dep_command << depc << " ";
         }
+        std::cerr<<"ACTIONBUILDER 555555555"<<dep_command<<std::endl;
         BUILDBOX_LOG_DEBUG(dep_command.str());
     }
 
@@ -413,7 +414,7 @@ void ActionBuilder::getDependencies(const ParsedCommand &command,
             mt(TIMER_NAME_COMPILER_DEPS, d_durationMetricCallback);
              BUILDBOX_LOG_DEBUG("ABOVE FILEINFO OF DEPS7777");
         fileInfo = Deps::get_file_info(command);
-         BUILDBOX_LOG_DEBUG("AFTER FILEINFO OF DEPS7777");
+         //BUILDBOX_LOG_DEBUG("AFTER FILEINFO OF DEPS7777");
     }
 
     *dependencies = fileInfo.d_dependencies;
