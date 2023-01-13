@@ -1,0 +1,10 @@
+#!/bin/bash
+# This script, like ../gcc, is intended for testing gcc -M output.
+#
+# However, this script simulates cases where gcc -M prints nothing,
+# as in the case where the compile command includes a -x flag that
+# results in no output (such as "-x assembler" or "-x cpp-output").
+#
+# Note that this script also needs to be named "gcc" as recc uses
+# the compilers's file name to determine what kind of compiler
+# it is.

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Simple script that prints output that looks like gcc -M would look
+# like for 'gcc -c hello.cpp' to be used for testing. It's very simple,
+# and doesn't even return the full set of dependencies that would make up a
+# realistic example. It's only purpose is to make sure that an action can be
+# built when asking the compiler for dependency info, without calling a real compiler.
+
+# Testing that the compiler is actually called correctly and that recc
+# can parse the output is handled in deps.t.cpp
+
+echo "hello.o: hello.cpp /usr/include/stdc-predef.h \\"
+echo " /usr/include/stdio.h \\"
+echo " /usr/include/other-system-header.h"

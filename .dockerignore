@@ -1,0 +1,4 @@
+# Ignore local build directory
+build
+# Ignore .git
+.git

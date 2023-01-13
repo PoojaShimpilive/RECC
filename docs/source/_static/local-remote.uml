@@ -1,0 +1,40 @@
+@startuml
+title recc - Local/Remote Execution
+
+start
+:Parse command;
+
+note right
+A "compiler command" invokes a
+known compiler with "-c" in its
+argument list.
+end note
+
+if (RECC_NO_EXECUTE) then (1)
+    stop
+else (0)
+  if (Compiler command or RECC_FORCE_REMOTE?) then (yes)
+    if (RECC_CACHE_ONLY) then (1)
+      if (Action Cache hit?) then (yes)
+        stop
+      else (no)
+        :Execute locally;
+        stop
+      endif
+    else (0)
+      if (RECC_SKIP_CACHE) then (0)
+          if (Action Cache hit?) then (yes)
+            stop
+          else (no)
+          endif
+      else (1)
+      endif
+    :Remote execution;
+    stop
+    endif
+  else (no)
+    :Execute locally;
+    stop
+  endif
+endif
+@enduml

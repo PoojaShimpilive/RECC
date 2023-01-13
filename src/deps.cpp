@@ -86,7 +86,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
         result.insert(current_filename);
     }
 
-    std::cerr<<"File_name"<<current_filename;
+    std::cerr<<"File_name"<<current_filename<<std::endl;
     return result;
 }
 
