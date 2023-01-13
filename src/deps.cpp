@@ -34,7 +34,7 @@
 #include <unistd.h>
 
 namespace recc {
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG555");
+//BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG555");
 std::set<std::string>
 Deps::dependencies_from_make_rules(const std::string &rules,
                                    bool is_sun_format)
@@ -124,9 +124,10 @@ std::string Deps::crtbegin_from_clang_v(const std::string &str)
 
     return crtbegin_file;
 }
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7");
+
 CommandFileInfo Deps::get_file_info(const ParsedCommand &parsedCommand)
 {
+    BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7");
     CommandFileInfo result;
     bool is_clang = parsedCommand.is_clang();
     const auto subprocessResult = Subprocess::execute(
