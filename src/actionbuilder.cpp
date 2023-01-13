@@ -503,7 +503,7 @@ std::shared_ptr<proto::Action> ActionBuilder::BuildAction(
         else {
            
             deps = RECC_DEPS_OVERRIDE;
-             std::cout << "result in SET  " << deps;
+             std::cout << "result in SET :" << deps;
         }
 
         // Go through all the dependencies and apply any required path
