@@ -81,7 +81,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
             current_filename += character;
         }
     }
- std::cerr<<"Before File_name 555555555 >"<<current_filename<<std::endl;
+    std::cerr<<"Before File_name 555555555 >"<<current_filename<<std::endl;
     if (!current_filename.empty()) {
         BUILDBOX_LOG_DEBUG("FILENAME IS EMPTY");
         result.insert(current_filename);
@@ -91,7 +91,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
     BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<current_filename);
     //std::cerr<<"FRESULT 8888888"<<result<<std::endl;
 
-    
+    std::cout << "result in SET  " << result;
     return result;
 }
 
@@ -201,7 +201,7 @@ CommandFileInfo Deps::get_file_info(const ParsedCommand &parsedCommand)
             buildboxcommon::FileUtils::normalizePath(product.c_str()));
     }
      //std::cerr<<"Get file info fun 8888888"<<result<<std::endl;
-     BUILDBOX_LOG_DEBUG("get_file_info"<<&result)
+     
     return result;
 }
 
@@ -246,7 +246,7 @@ Deps::determine_products(const ParsedCommand &parsedCommand)
                 " uses a file suffix unsupported for caching");
         }
     }
-BUILDBOX_LOG_DEBUG("Logs  DEPSS"<<&result);
+
     return result;
 }
 

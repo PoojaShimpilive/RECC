@@ -68,7 +68,7 @@ struct Deps {
      * dependencies (including the input files).
      */
 
-    //BUILDBOX_LOG_DEBUG("Logs LOG77777");
+    BUILDBOX_LOG_DEBUG("Logs LOG77777");
     static std::set<std::string>
     dependencies_from_make_rules(const std::string &rules,
                                  bool is_sun_format = false);
