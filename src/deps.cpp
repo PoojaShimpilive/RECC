@@ -86,7 +86,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
         result.insert(current_filename);
     }
 
-    BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<result);
+   // BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<result);
     BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<current_filename);
     //std::cerr<<"FRESULT 8888888"<<result<<std::endl;
     return result;
