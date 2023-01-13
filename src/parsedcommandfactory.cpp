@@ -666,5 +666,5 @@ void ParseRuleHelper::parseStageOptionList(const std::string &option,
     }
     result->push_back(current);
 }
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION ParsedCommandFactory LOG3 ");
+
 } // namespace recc
