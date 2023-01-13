@@ -34,7 +34,7 @@
 #include <unistd.h>
 
 namespace recc {
-
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG5**** '" << "'");
 std::set<std::string>
 Deps::dependencies_from_make_rules(const std::string &rules,
                                    bool is_sun_format)
@@ -89,7 +89,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
     std::cerr<<"File_name 555555555"<<current_filename<<std::endl;
     return result;
 }
-
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG56**** '" << "'");
 std::string Deps::crtbegin_from_clang_v(const std::string &str)
 {
     // Look for lines of the form:
@@ -123,7 +123,7 @@ std::string Deps::crtbegin_from_clang_v(const std::string &str)
 
     return crtbegin_file;
 }
-
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7**** '" << "'");
 CommandFileInfo Deps::get_file_info(const ParsedCommand &parsedCommand)
 {
     CommandFileInfo result;
