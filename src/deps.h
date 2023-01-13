@@ -22,6 +22,10 @@
 #include <string>
 #include <vector>
 
+#include <buildboxcommon_logging.h>
+#include <buildboxcommonmetrics_durationmetrictimer.h>
+#include <buildboxcommonmetrics_metricteeguard.h>
+#define TIMER_NAME_COMPILER_DEPS "recc.compiler_deps"
 namespace recc {
 
 /**
@@ -46,7 +50,8 @@ struct CommandFileInfo {
 };
 
 struct Deps {
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
+
+    BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
 
     /**
      * Returns the names of the files needed to run the command.
@@ -81,7 +86,7 @@ BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
      * Returns an empty string if something went wrong.
      */
     static std::string crtbegin_from_clang_v(const std::string &str);
-std::cerr<<"Debug Log 2222222222222222"<<std::endl;
+
     /**
      * Determine if the given file is a header file based on it's suffix
      * https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html
