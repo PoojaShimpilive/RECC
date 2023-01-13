@@ -87,9 +87,10 @@ Deps::dependencies_from_make_rules(const std::string &rules,
     }
 
     std::cerr<<"File_name 555555555"<<current_filename<<std::endl;
+    BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<current_filename);
     return result;
 }
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG56**** '" << "'");
+
 std::string Deps::crtbegin_from_clang_v(const std::string &str)
 {
     // Look for lines of the form:
@@ -123,7 +124,7 @@ std::string Deps::crtbegin_from_clang_v(const std::string &str)
 
     return crtbegin_file;
 }
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7**** '" << "'");
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7");
 CommandFileInfo Deps::get_file_info(const ParsedCommand &parsedCommand)
 {
     CommandFileInfo result;
