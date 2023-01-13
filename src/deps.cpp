@@ -83,6 +83,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
     }
  std::cerr<<"Before File_name 555555555 >"<<current_filename<<std::endl;
     if (!current_filename.empty()) {
+        BUILDBOX_LOG_DEBUG("FILENAME IS EMPTY");
         result.insert(current_filename);
     }
 

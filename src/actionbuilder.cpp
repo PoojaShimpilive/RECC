@@ -500,7 +500,9 @@ std::shared_ptr<proto::Action> ActionBuilder::BuildAction(
             }
         }
         else {
+           
             deps = RECC_DEPS_OVERRIDE;
+             BUILDBOX_LOG_DEBUG("Running locally to display the error5555555."<<deps);
         }
 
         // Go through all the dependencies and apply any required path
