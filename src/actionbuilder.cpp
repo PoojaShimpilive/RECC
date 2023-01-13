@@ -475,6 +475,7 @@ std::shared_ptr<proto::Action> ActionBuilder::BuildAction(
             try {
                 getDependencies(command, &deps, &products);
 
+                 BUILDBOX_LOG_DEBUG("Running DEPEnDencies"<<&deps);
                 // If no dependencies are found, there won't be any input files
                 // in the remote, so run the build locally.
                 if (deps.empty()) {
