@@ -403,7 +403,7 @@ void ActionBuilder::getDependencies(const ParsedCommand &command,
             dep_command << depc << " ";
         }
        // std::cerr<<"ACTIONBUILDER 4444444"<<depc<<std::endl;
-        BUILDBOX_LOG_DEBUG(dep_command);
+        //BUILDBOX_LOG_DEBUG(dep_command);
         BUILDBOX_LOG_DEBUG(dep_command.str());
     }
 
