@@ -60,6 +60,8 @@ struct Deps {
      * Parse the given Make rules and return a set containing their
      * dependencies (including the input files).
      */
+
+    std::cerr<<"Debug Log 111111111111111******"<<std::endl;
     static std::set<std::string>
     dependencies_from_make_rules(const std::string &rules,
                                  bool is_sun_format = false);
@@ -77,7 +79,7 @@ struct Deps {
      * Returns an empty string if something went wrong.
      */
     static std::string crtbegin_from_clang_v(const std::string &str);
-
+std::cerr<<"Debug Log 2222222222222222*****"<<std::endl;
     /**
      * Determine if the given file is a header file based on it's suffix
      * https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html
