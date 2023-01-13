@@ -1,0 +1,4 @@
+/user/include/x-linux-gnu/bits/types/++fpos_t.h \
+/user/include/x-linux-gnu/stub.h \h \
+/user/include/x-linux-gnu/bits/types.h/ .h \te_t.h \
+/user/include/x-linux-gnu/bits/typesize.h/ .h \te_t.h \  
