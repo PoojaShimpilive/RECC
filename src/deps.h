@@ -51,7 +51,7 @@ struct CommandFileInfo {
 
 struct Deps {
 
-    BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
+    //BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
 
     /**
      * Returns the names of the files needed to run the command.
@@ -68,7 +68,7 @@ struct Deps {
      * dependencies (including the input files).
      */
 
-    BUILDBOX_LOG_DEBUG("Logs LOG77777");
+    //BUILDBOX_LOG_DEBUG("Logs LOG77777");
     static std::set<std::string>
     dependencies_from_make_rules(const std::string &rules,
                                  bool is_sun_format = false);

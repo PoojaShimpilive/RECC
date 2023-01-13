@@ -231,7 +231,7 @@ extern std::string RECC_CUSTOM_PREFIX;
  * this isn't set, deps is called to determine the input files.
  */
 
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION Env LOG4 '" << "'");
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION Env LOG4");
 extern std::set<std::string> RECC_DEPS_OVERRIDE;
 
 /**
