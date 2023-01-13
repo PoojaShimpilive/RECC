@@ -34,7 +34,7 @@
 #include <unistd.h>
 
 namespace recc {
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG5**** '" << "'");
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG555");
 std::set<std::string>
 Deps::dependencies_from_make_rules(const std::string &rules,
                                    bool is_sun_format)
