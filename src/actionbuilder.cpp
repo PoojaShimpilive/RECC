@@ -406,10 +406,14 @@ void ActionBuilder::getDependencies(const ParsedCommand &command,
 
     CommandFileInfo fileInfo;
     { // Timed block
+
+          BUILDBOX_LOG_DEBUG("IN FILEINFO OF DEPS7777");
         buildboxcommon::buildboxcommonmetrics::MetricTeeGuard<
             buildboxcommon::buildboxcommonmetrics::DurationMetricTimer>
             mt(TIMER_NAME_COMPILER_DEPS, d_durationMetricCallback);
+             BUILDBOX_LOG_DEBUG("ABOVE FILEINFO OF DEPS7777");
         fileInfo = Deps::get_file_info(command);
+         BUILDBOX_LOG_DEBUG("AFTER FILEINFO OF DEPS7777"<<fileInfo);
     }
 
     *dependencies = fileInfo.d_dependencies;

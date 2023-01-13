@@ -46,7 +46,7 @@ struct CommandFileInfo {
 };
 
 struct Deps {
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7*#####*** '" << "'");
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7*#####***");
 
     /**
      * Returns the names of the files needed to run the command.

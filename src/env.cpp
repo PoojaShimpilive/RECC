@@ -37,7 +37,7 @@
 #include <unistd.h>
 #include <utility>
 #include <vector>
-
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION ENV LOG1");
 namespace recc {
 
 // Leave these empty so that parse_config_variables can print warnings if not
