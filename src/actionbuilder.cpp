@@ -416,7 +416,7 @@ void ActionBuilder::getDependencies(const ParsedCommand &command,
             mt(TIMER_NAME_COMPILER_DEPS, d_durationMetricCallback);
              BUILDBOX_LOG_DEBUG("ABOVE FILEINFO OF DEPS7777");
         fileInfo = Deps::get_file_info(command);
-         //BUILDBOX_LOG_DEBUG("AFTER FILEINFO OF DEPS7777");
+         BUILDBOX_LOG_DEBUG("AFTER FILEINFO OF DEPS7777");
     }
 
     *dependencies = fileInfo.d_dependencies;
@@ -503,7 +503,7 @@ std::shared_ptr<proto::Action> ActionBuilder::BuildAction(
         else {
            
             deps = RECC_DEPS_OVERRIDE;
-             std::cout << "result in SET :" << deps;
+            // std::cout << "result in SET :" << deps;
         }
 
         // Go through all the dependencies and apply any required path
@@ -517,6 +517,7 @@ std::shared_ptr<proto::Action> ActionBuilder::BuildAction(
                 // Make path relative if needed
                 modifiedDep =
                     FileUtils::rewritePathToRelative(modifiedDep, cwd);
+                     BUILDBOX_LOG_DEBUG("in a print path"<<dep);
                 BUILDBOX_LOG_DEBUG("Mapping local path: ["
                                    << dep << "] to remote path: ["
                                    << modifiedDep << "]");
