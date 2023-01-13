@@ -88,6 +88,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
 
     std::cerr<<"File_name 555555555"<<current_filename<<std::endl;
     BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<current_filename);
+    BUILDBOX_LOG_DEBUG("FILENAME RESULT :"<<result);
     return result;
 }
 
@@ -196,7 +197,7 @@ CommandFileInfo Deps::get_file_info(const ParsedCommand &parsedCommand)
         result.d_possibleProducts.insert(
             buildboxcommon::FileUtils::normalizePath(product.c_str()));
     }
-
+    BUILDBOX_LOG_DEBUG("FILENAME_GETINFO FUN  :"<<result);
     return result;
 }
 
