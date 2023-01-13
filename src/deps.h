@@ -46,7 +46,7 @@ struct CommandFileInfo {
 };
 
 struct Deps {
-BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7*#####***");
+BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG77777");
 
     /**
      * Returns the names of the files needed to run the command.
@@ -63,7 +63,7 @@ BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7*#####***");
      * dependencies (including the input files).
      */
 
-    std::cerr<<"Debug Log 111111111111111******"<<std::endl;
+    BUILDBOX_LOG_DEBUG("Logs LOG77777");
     static std::set<std::string>
     dependencies_from_make_rules(const std::string &rules,
                                  bool is_sun_format = false);
@@ -81,7 +81,7 @@ BUILDBOX_LOG_DEBUG("RECC_REAPI_VERSION DEPSCPP LOG7*#####***");
      * Returns an empty string if something went wrong.
      */
     static std::string crtbegin_from_clang_v(const std::string &str);
-std::cerr<<"Debug Log 2222222222222222*****"<<std::endl;
+std::cerr<<"Debug Log 2222222222222222"<<std::endl;
     /**
      * Determine if the given file is a header file based on it's suffix
      * https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html
