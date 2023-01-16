@@ -107,7 +107,9 @@ class ParsedCommand {
      * (For example, if no output files are specified, many compilers will
      * write to a.out by default.)
      */
-    std::set<std::string> get_products() const { return d_commandProducts; }
+    std::set<std::string> get_products() const 
+    { return d_commandProducts; 
+    }
 
     /**
      * Return the deps output files specified in the command arguments.
