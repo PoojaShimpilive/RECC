@@ -249,13 +249,14 @@ int main(int argc, char *argv[])
         std::cerr << "(run \"recc --help\" for details)" << std::endl;
         return RC_USAGE;
 
-    }else if (argv[1][0] == '--deps') {
+    }
+    /*else if (argv[1] == '--deps') {
         std::cerr << "recc: recognized custome compiler option '" << argv[2] << "'"
                   << std::endl;
         std::cerr << "USAGE: recc --deps <command>" << std::endl;
         std::cerr << "(run \"recc --help\" for details)" << std::endl;
         return RC_USAGE;
-    }
+    }*/
 
     Signal::setup_signal_handler(SIGINT, setSigintReceived);
 

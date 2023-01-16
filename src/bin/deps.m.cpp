@@ -43,6 +43,14 @@ int main(int argc, char *argv[])
         BUILDBOX_LOG_WARNING(HELP);
         return 0;
     }
+    else if (argc <= 1 || argv[1] == '--deps') {
+       /* std::cerr << "recc: recognized custome compiler option '" << argv[2] << "'"
+                  << std::endl;
+        std::cerr << "USAGE: recc --deps <command>" << std::endl;
+        std::cerr << "(run \"recc --help\" for details)" << std::endl;
+        return RC_USAGE;*/
+         BUILDBOX_LOG_LOG("RECC: recognized custome compiler option");
+    }
     try {
         const auto parsedCommand =
             ParsedCommandFactory::createParsedCommand(&argv[1], cwd.c_str());
