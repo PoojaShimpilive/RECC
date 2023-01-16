@@ -45,6 +45,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap GccRules = {
     // Redirects output
     {"-o", ParseRule::parseOptionRedirectsOutput},
     {"-MF", ParseRule::parseOptionRedirectsDepsOutput},
+    {"-DEP", ParseRule::parseOptionRedirectsDepsOutput},
     {"-MT", ParseRule::parseOptionDepsRuleTarget},
     {"-MQ", ParseRule::parseOptionDepsRuleTarget},
     // Input paths
@@ -59,6 +60,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap GccRules = {
     {"--sysroot", ParseRule::parseIsEqualInputPathOption},
     // Preprocessor arguments
     {"-Wp,", ParseRule::parseIsPreprocessorArgOption},
+    {"-DEP,", ParseRule::parseIsPreprocessorArgOption},
     {"-Xpreprocessor", ParseRule::parseIsPreprocessorArgOption},
     // Sets language
     {"-x", ParseRule::parseOptionSetsGccLanguage},
@@ -67,6 +69,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap GccRules = {
     {"-fauto-profile", ParseRule::parseOptionIsUnsupported},
     {"-specs", ParseRule::parseOptionIsUnsupported},
     {"-M", ParseRule::parseOptionIsUnsupported},
+    {"-DEP", ParseRule::parseOptionIsUnsupported},
     {"-MM", ParseRule::parseOptionIsUnsupported},
     {"-E", ParseRule::parseOptionIsUnsupported},
 };
@@ -75,6 +78,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap GccPreprocessorRules =
     {
         // Interferes with dependencies
         {"-MD", ParseRule::parseInterfersWithDepsOption},
+        {"-DEP", ParseRule::parseInterfersWithDepsOption},
         {"-MMD", ParseRule::parseInterfersWithDepsOption},
         {"-M", ParseRule::parseOptionIsUnsupported},
         {"-MM", ParseRule::parseOptionIsUnsupported},
@@ -84,6 +88,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap GccPreprocessorRules =
         // Redirects output
         {"-o", ParseRule::parseOptionRedirectsOutput},
         {"-MF", ParseRule::parseOptionRedirectsDepsOutput},
+        {"-DEP", ParseRule::parseOptionRedirectsDepsOutput},
         {"-MT", ParseRule::parseOptionDepsRuleTarget},
         {"-MQ", ParseRule::parseOptionDepsRuleTarget},
         // Input paths
@@ -124,11 +129,13 @@ static const ParsedCommandFactory::CompilerParseRulesMap SunCPPRules = {
 static const ParsedCommandFactory::CompilerParseRulesMap AixRules = {
     // Interferes with dependencies
     {"-qsyntaxonly", ParseRule::parseInterfersWithDepsOption},
+    {"-DEP", ParseRule::parseInterfersWithDepsOption},
     // Macros
     {"-D", ParseRule::parseIsMacro},
     // Redirects output
     {"-o", ParseRule::parseOptionRedirectsOutput},
     {"-MF", ParseRule::parseOptionRedirectsOutput},
+    {"-DEP", ParseRule::parseOptionRedirectsOutput},
     {"-qexpfile", ParseRule::parseOptionRedirectsOutput},
     // Input paths
     {"-qinclude", ParseRule::parseIsInputPathOption},
@@ -142,6 +149,7 @@ static const ParsedCommandFactory::CompilerParseRulesMap AixRules = {
     {"-qdump_class_hierachy", ParseRule::parseOptionIsUnsupported},
     {"-E", ParseRule::parseOptionIsUnsupported},
     {"-M", ParseRule::parseOptionIsUnsupported},
+    {"-DEP", ParseRule::parseOptionIsUnsupported},
     {"-qmakedep", ParseRule::parseOptionIsUnsupported},
     {"-qmakedep=gcc", ParseRule::parseOptionIsUnsupported},
 };
@@ -384,6 +392,7 @@ void ParseRule::parseInterfersWithDepsOption(ParsedCommand *command,
                                              const std::string &)
 {
     if (command->d_originalCommand.front() == "-MMD" ||
+        command->d_originalCommand.front() == "-DEP" ||
         command->d_originalCommand.front() == "-MD") {
         command->d_md_option_set = true;
     }

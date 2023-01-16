@@ -117,7 +117,7 @@ void simpleCommand(const char *gcc_or_clang)
         {gcc_or_clang, "-c", "hello.c"});
     std::vector<std::string> expectedCommand = {gcc_or_clang, "-c", "hello.c"};
     std::vector<std::string> expectedDepsCommand = {gcc_or_clang, "-c",
-                                                    "hello.c", "-M"};
+                                                    "hello.c", "-M","-DEP"};
     if (RECC_DEPS_GLOBAL_PATHS && command.is_clang()) {
         expectedDepsCommand.push_back("-v");
     }
@@ -143,7 +143,7 @@ void outputArgument(const char *gcc_or_clang)
     std::vector<std::string> expectedCommand = {gcc_or_clang, "-c", "hello.c",
                                                 "-o", "hello.o"};
     std::vector<std::string> expectedDepsCommand = {gcc_or_clang, "-c",
-                                                    "hello.c", "-M"};
+                                                    "hello.c", "-M","-DEP"};
     if (RECC_DEPS_GLOBAL_PATHS && command.is_clang()) {
         expectedDepsCommand.push_back("-v");
     }
@@ -322,6 +322,7 @@ TEST(XlcTest, OutputArguments)
         "-c",
         "hello.c",
         "-qsyntaxonly",
+        "-DEP",
         "-M",
         "-MF",
         command.get_aix_dependency_file_name()};
@@ -340,7 +341,7 @@ TEST(XlcTest, OutputArguments)
 TEST(XlcTest, PreprocessorOnlyArguments)
 {
     EXPECT_FALSE(ParsedCommandFactory::createParsedCommand(
-                     {"xlc", "-c", "hello.c", "-M"})
+                     {"xlc", "-c", "hello.c", "-M","-DEP"})
                      .is_compiler_command());
     EXPECT_FALSE(ParsedCommandFactory::createParsedCommand(
                      {"xlc", "-c", "hello.c", "-qmakedep"})
@@ -436,6 +437,38 @@ TEST(RewriteAbsolutePathsTest, ComplexOptions)
         "-Xpreprocessor",
         "/usr/include/something"};
     const std::vector<std::string> expectedDepsCommand = {
+       /* "gcc",
+        "-c",
+        "/home/nobody/test/hello.c",
+        "-I/home/nobody/headers",
+        "-I",
+        "/home/nobody/test/moreheaders/",
+        "-Xpreprocessor",
+        "-I",
+        "-Xpreprocessor",
+        "/home/nobody/evenmoreheaders",
+        "-Xpreprocessor",
+        "-I",
+        "-Xpreprocessor",
+        "/usr/include/something",
+        "-M"};*/
+
+         "gcc",
+        "-c",
+        "/home/nobody/test/hello.c",
+        "-I/home/nobody/headers",
+        "-I",
+        "/home/nobody/test/moreheaders/",
+        "-Xpreprocessor",
+        "-I",
+        "-Xpreprocessor",
+        "/home/nobody/evenmoreheaders",
+        "-Xpreprocessor",
+        "-I",
+        "-Xpreprocessor",
+        "/usr/include/something",
+        "-DEP"};
+const std::vector<std::string> expectedDepsCommand = {
         "gcc",
         "-c",
         "/home/nobody/test/hello.c",
@@ -450,7 +483,8 @@ TEST(RewriteAbsolutePathsTest, ComplexOptions)
         "-I",
         "-Xpreprocessor",
         "/usr/include/something",
-        "-M"};
+        "-d"};
+
     const std::set<std::string> expectedProducts = {"hello.o"};
 
     ASSERT_TRUE(parsedCommand.is_compiler_command());
@@ -475,8 +509,10 @@ TEST(ReplacePathTest, SimpleRewrite)
         "gcc", "-c", "hello.c", "-I/include/headers", "-o", "hello.o"};
 
     // Deps command shouldn't be rewritten.
-    const std::vector<std::string> expectedDepsCommand = {
-        "gcc", "-c", "hello.c", "-I/usr/bin/include/headers", "-M"};
+    /*const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "hello.c", "-I/usr/bin/include/headers", "-M"};*/
+        const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "hello.c", "-I/usr/bin/include/headers", "-DEP"};
 
     const std::set<std::string> expectedProducts = {"hello.o"};
 
@@ -503,8 +539,11 @@ TEST(ReplacePathTest, NormalizeNonCompilerPaths)
         "-o",    "hello.o"};
 
     // Deps command shouldn't be normalized.
+   // const std::vector<std::string> expectedDepsCommand = {
+    //    "./gcc", "-c", "./hello.c", "-I/usr/../usr/bin/include/headers", "-M"};
+
     const std::vector<std::string> expectedDepsCommand = {
-        "./gcc", "-c", "./hello.c", "-I/usr/../usr/bin/include/headers", "-M"};
+        "./gcc", "-c", "./hello.c", "-I/usr/../usr/bin/include/headers", "-DEP"};
 
     const std::set<std::string> expectedProducts = {"hello.o"};
 
@@ -530,8 +569,10 @@ TEST(ReplacePathTest, PathInProjectRoot)
         ParsedCommandFactory::createParsedCommand(command, "/home/");
 
     // Deps command shouldn't be rewritten.
-    const std::vector<std::string> expectedDepsCommand = {
-        "gcc", "-c", "hello.c", "-I/home/usr/bin/include/headers", "-M"};
+   /* const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "hello.c", "-I/home/usr/bin/include/headers", "-M"};*/
+         const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "hello.c", "-I/home/usr/bin/include/headers", "-DEP"};
 
     // -I should be replaced, and made relative
     const std::vector<std::string> expectedCommand = {
@@ -555,9 +596,10 @@ TEST(ReplacePathTest, SimpleCompilePathReplacement)
         ParsedCommandFactory::createParsedCommand(command, "");
 
     // Deps command shouldn't be rewritten.
-    const std::vector<std::string> expectedDepsCommand = {
-        "gcc", "-c", "/home/usr/bin/hello.c", "-M"};
-
+   /* const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "/home/usr/bin/hello.c", "-M"};*/
+ const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "hello.c", "-I/home/usr/bin/include/headers", "-DEP"};
     const std::vector<std::string> expectedCommand = {"gcc", "-c",
                                                       "/home/bin/hello.c"};
     ASSERT_TRUE(parsedCommand.is_compiler_command());
@@ -585,9 +627,13 @@ TEST(ReplacePathTest, ReplaceCompilePathInProjectRoot)
         ParsedCommandFactory::createParsedCommand(command, "/home/");
 
     // Deps command shouldn't be rewritten.
-    const std::vector<std::string> expectedDepsCommand = {
+   /* const std::vector<std::string> expectedDepsCommand = {
         "gcc", "-c", "/home/usr/bin/hello.c",
-        "-I/home/usr/bin/include/headers", "-M"};
+        "-I/home/usr/bin/include/headers", "-M"};*/
+
+        const std::vector<std::string> expectedDepsCommand = {
+        "gcc", "-c", "/home/usr/bin/hello.c",
+        "-I/home/usr/bin/include/headers", "-DEP"};
 
     // -I should be replaced, and made relative
     const std::vector<std::string> expectedCommand = {
