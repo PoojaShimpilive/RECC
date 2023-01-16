@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
         std::cout << versionMessage << std::endl;
         return RC_OK;
     }
-    else if (argv[1][0] == '--deps') {
+    else if (argv[1][0] == "--deps") {
         std::cerr << "recc: recognized custome compiler option '" << argv[2] << "'"
                   << std::endl;
         std::cerr << "USAGE: recc --deps <command>" << std::endl;
