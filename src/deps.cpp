@@ -91,7 +91,7 @@ Deps::dependencies_from_make_rules(const std::string &rules,
     BUILDBOX_LOG_DEBUG("FILENAME LOG56 :"<<current_filename);
     //std::cerr<<"FRESULT 8888888"<<result<<std::endl;
 
-    std::cout << "result in SET  " << result;
+    //std::cout << "result in SET  " << result;
     return result;
 }
 
