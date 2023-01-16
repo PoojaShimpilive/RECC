@@ -234,7 +234,8 @@ int ExecutionContext::execute(int argc, char *argv[])
         BUILDBOX_LOG_ERROR(
             "Could not initialize statsD publisher: " << e.what());
         throw;
-    }
+    } 
+    
 
     buildboxcommon::buildboxcommonmetrics::PublisherGuard<StatsDPublisherType>
         statsDPublisherGuard(RECC_ENABLE_METRICS, *statsDPublisher);
