@@ -264,7 +264,7 @@ bool Deps::is_header_file(const std::string &file)
 
 bool Deps::is_source_file(const std::string &file)
 {
-    const std::set<std::string> source_suffixes = {"cc",  "c",   "cp",  "cxx",
+    const std::set<std::string> source_suffixes = {"cc", "DEP", "c",   "cp",  "cxx",
                                                    "cpp", "CPP", "c++", "C"};
     const std::size_t pos = file.find_last_of(".");
     if (pos != std::string::npos) {
