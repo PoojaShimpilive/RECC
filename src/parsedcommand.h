@@ -77,6 +77,11 @@ class ParsedCommand {
      */
     std::vector<std::string> get_dependencies_command() const
     {
+         for (const auto &d_dependenciesCommand : d_dependenciesCommand) {
+            std::string modifiedDeppp(d_dependenciesCommand);
+        
+        BUILDBOX_LOG_DEBUG("Dependencies in a print path"<<d_dependenciesCommand);
+
         return d_dependenciesCommand;
     }
 

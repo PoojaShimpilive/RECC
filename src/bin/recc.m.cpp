@@ -223,6 +223,7 @@ static void setSigintReceived(int) { s_sigintReceived = true; }
 
 int main(int argc, char *argv[])
 {
+    //--deps 
     Env::setup_logger_from_environment(argv[0]);
 
     if (argc <= 1) {
@@ -247,6 +248,13 @@ int main(int argc, char *argv[])
         std::cerr << "USAGE: recc <command>" << std::endl;
         std::cerr << "(run \"recc --help\" for details)" << std::endl;
         return RC_USAGE;
+
+    }else if (argv[2][0] == '--deps') {
+        std::cerr << "recc: recognized custome compiler option '" << argv[2] << "'"
+                  << std::endl;
+        std::cerr << "USAGE: recc --deps <command>" << std::endl;
+        std::cerr << "(run \"recc --help\" for details)" << std::endl;
+        return RC_USAGE;
     }
 
     Signal::setup_signal_handler(SIGINT, setSigintReceived);
@@ -254,6 +262,13 @@ int main(int argc, char *argv[])
     try {
         // Parsing of recc options is complete. The remaining arguments are the
         // compiler command line.
+        if(argv[2][0]!=NULL){
+            const auto parsedCommand =
+            ParsedCommandFactory::createParsedCommand(&argv[1], cwd.c_str());
+            const auto deps = Deps::get_file_info(parsedCommand).d_dependencies;
+            for (const auto &dep : deps) {
+                BUILDBOX_LOG_INFO(dep);
+        }
         ExecutionContext context;
         context.setStopToken(s_sigintReceived);
         return context.execute(argc - 1, &argv[1]);
